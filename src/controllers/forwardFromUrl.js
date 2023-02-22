@@ -1,17 +1,25 @@
 const { default: fetch } = require("node-fetch");
 
-function forwardFromUrl(url) {
+function forwardFromUrl(url, paramIdName) {
   return async function (req, res) {
-    try {
-      const { method, body, token } = req;
-      const headers = token
-        ? {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${token}`,
-          }
-        : null;
+    // modify the static param id with the actual one
+    const paramId = req.params[paramIdName];
+    const newurl = paramId ? url.replace(`:${paramIdName}`, paramId) : url;
+    console.log(`Called redirect to ${newurl}`);
 
-      const response = await fetch(url, {
+    try {
+      const method = req.method;
+      const token = req.token;
+      const body =
+        req.body && Object.keys(req.body).length !== 0
+          ? JSON.stringify(req.body)
+          : null;
+      const headers = {
+        "Content-Type": "application/json",
+        Authorization: token ? `Bearer ${token}` : "",
+      };
+
+      const response = await fetch(newurl, {
         method,
         headers,
         body,
