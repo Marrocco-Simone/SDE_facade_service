@@ -13,26 +13,26 @@ router.get("/", serverOnline);
 // * data layer routes
 router.post("/login", forwardFromUrl(`${data_service_url}/db/login`));
 router.get(
-  "/get",
+  "/content",
   authenticateToken,
-  forwardFromUrl(`${data_service_url}/db/get`)
+  forwardFromUrl(`${data_service_url}/db/content`)
 );
 router.get(
-  "/get/:contentId",
+  "/content/:contentId",
   authenticateToken,
-  forwardFromUrl(`${data_service_url}/db/get/:contentId`, 'contentId')
+  forwardFromUrl(`${data_service_url}/db/content/:contentId`, 'contentId')
 );
 router.put(
-  "/update/:contentId",
+  "/content/:contentId",
   authenticateToken,
-  forwardFromUrl(`${data_service_url}/db/update/:contentId`, 'contentId')
+  forwardFromUrl(`${data_service_url}/db/content/:contentId`, 'contentId')
 );
 
 // * create content layer routes
 router.post(
-  "/prompt",
+  "/create",
   authenticateToken,
-  forwardFromUrl(`${create_content_service_url}/prompt`)
+  forwardFromUrl(`${create_content_service_url}/create`)
 );
 
 module.exports = { router };
