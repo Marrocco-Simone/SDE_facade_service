@@ -1,7 +1,7 @@
 const { serverOnline } = require("./serverOnline");
-const { createNewContent } = require("./createNewContent");
+const { forwardFromUrl } = require("./forwardFromUrl");
 
 module.exports = {
   serverOnline,
-  createNewContent,
+  forwardFromUrl,
 };
