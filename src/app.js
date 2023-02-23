@@ -2,7 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const { router } = require("./router");
-const { requestLogger } = require("./middleware");
+const { requestLogger, pageNotFound } = require("./middleware");
 const { serverOnline } = require("./controllers");
 
 // Set up the server
@@ -13,6 +13,8 @@ app.use(cors());
 app.use(requestLogger);
 app.get("/", serverOnline);
 app.use("/api", router);
+
+app.use(pageNotFound);
 
 // Start the server
 const port = process.env.PORT;
