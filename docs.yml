@@ -3,7 +3,7 @@ info:
   title: Facade service
   version: '1.0'
 servers:
-  - url: https://create-content-service-7x5inv6roa-lz.a.run.app
+  - url: https://facade-service-7x5inv6roa-lz.a.run.app
 paths:
   /login:
     post:
